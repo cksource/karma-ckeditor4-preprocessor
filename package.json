@@ -1,0 +1,19 @@
+{
+  "name": "karma-ckeditor4-preprocessor",
+  "version": "0.1.0",
+  "description": "A Karma preprocessor handling custom CKEditor 4 tests tags.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cksource/karma-ckeditor4-preprocessor.git"
+  },
+  "author": "CKSource (http://cksource.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cksource/karma-ckeditor4-preprocessor/issues"
+  },
+  "homepage": "https://github.com/cksource/karma-ckeditor4-preprocessor#readme"
+}

@@ -14,8 +14,6 @@ function createCKEditor4Preprocessor() {
 		var tags = meta.parse( content ),
 			scriptsHtml = scripts.generate( tags );
 
-		console.log( scriptsHtml + meta.remove( content ) );
-
 		done( scriptsHtml + meta.remove( content ) );
 	};
 }

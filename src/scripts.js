@@ -15,13 +15,7 @@ module.exports = {
 				( data.ckeditor.remove && data.ckeditor.remove.plugins ) || data.ckeditor.adapters
 			) ) {
 
-			scripts.push(
-				'\n(function (bender) {\n',
-				'bender.configureEditor(',
-				JSON.stringify( data.ckeditor ),
-				');\n',
-				'})(bender);\n'
-			);
+			scripts.push( '\nvar test_editor_config = ' + JSON.stringify( data.ckeditor ) + ';\n' );
 		}
 
 		return scripts.join( '' );

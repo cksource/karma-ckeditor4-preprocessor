@@ -5,12 +5,12 @@
 
 'use strict';
 
-var metaPattern = /(?:\/\*\s*|\@)(bender-(\w+(?:\-\w+)*)\:([^\*\n$]+))/gi;
+const metaPattern = /(?:\/\*\s*|\@)(bender-(\w+(?:\-\w+)*)\:([^\*\n$]+))/gi;
 
 module.exports = {
-	parse: function( data ) {
-		var result = {},
-			directive,
+	parse( data ) {
+		const result = {};
+		let directive,
 			current,
 			parent,
 			value,
@@ -33,24 +33,24 @@ module.exports = {
 			}
 
 			// if there was a previous value, add the new one after a coma
-			parent[ current ] = parent[ current ] ? parent[ current ] + ', ' + value : value;
+			parent[ current ] = parent[ current ] ? `${ parent[ current ] }, ${ value }` : value;
 		}
 
 		return result;
 	},
 
-	remove: function( data ) {
-		var match,
+	remove( data ) {
+		let match,
 			newData = data;
 
 		while ( ( match = metaPattern.exec( data ) ) ) {
-			newData = newData.replace( new RegExp( '/\\*\\s*' + match[ 1 ] + '\\s*\\*/\\r?\\n|\\r' ), '' );
+			newData = newData.replace( new RegExp( `/\\*\\s*${ match[ 1 ] }\\s*\\*/\\r?\\n|\\r` ), '' );
 		}
 
 		return newData;
 	},
 
-	generate: function( tags ) {
-		return tags ? '\nvar test_tags = ' + JSON.stringify( tags ) + ';\n' : '';
+	generate( tags ) {
+		return tags ? `\nvar test_tags = ${ JSON.stringify( tags ) };\n` : '';
 	}
 };

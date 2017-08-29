@@ -48,5 +48,9 @@ module.exports = {
 		}
 
 		return newData;
+	},
+
+	generate: function( tags ) {
+		return tags ? '\nvar test_tags = ' + JSON.stringify( tags ) + ';\n' : '';
 	}
 };

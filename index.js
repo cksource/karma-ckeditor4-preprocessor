@@ -45,7 +45,13 @@ function getTestName( filePath ) {
 
 /**
  * Returns test file info containing absolute and relative file paths. The relative path starts from default
- * CKEditor tests folder which is `tests`.
+ * CKEditor tests folder which is `tests`:
+ *
+ *		filePath: '/Workspace/CKSource/CKEditor4/ckeditor/ckeditor-dev/tests/core/ckeditor/ckeditor.js'
+ * 		returns: {
+ * 			path: 'tests/core/ckeditor/ckeditor.js'
+ * 			fullpath: '/Workspace/CKSource/CKEditor4/ckeditor/ckeditor-dev/tests/core/ckeditor/ckeditor.js'
+ * 		}
  *
  * @param {String} filePath Absolute path to a test file.
  * @returns {Object} Object containing relative and absolute file paths.
@@ -61,7 +67,13 @@ function getTestFileInfo( filePath ) {
 
 /**
  * Returns test fixture file info containing absolute and relative file paths. The relative path starts from default
- * CKEditor tests folder which is `tests`.
+ * CKEditor tests folder which is `tests`:
+ *
+ * 		filePath: '/Workspace/CKSource/CKEditor4/ckeditor/ckeditor-dev/tests/core/ckeditor/ckeditor.js'
+ * 		returns: {
+ * 			path: 'tests/core/ckeditor/ckeditor.html'
+ * 			fullpath: '/Workspace/CKSource/CKEditor4/ckeditor/ckeditor-dev/tests/core/ckeditor/ckeditor.html'
+ * 		}
  *
  * @param {String} filePath Absolute path to a test file.
  * @returns {Object} Object containing relative and absolute file paths.
@@ -81,7 +93,7 @@ function getFixtureFileInfo( filePath ) {
 
 /**
  * Creates preprocessor which converts bender tags (e.g. `/* bender-tags: editor *\/`) into JavaScript object which then
- * can be accessed by running tests. It also contains test name and test and fixture file paths.
+ * can be accessed by running tests. It also contains test name, test and fixture file paths.
  *
  * @returns {Function} Preprocessor function.
  */

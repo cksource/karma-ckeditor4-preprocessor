@@ -74,15 +74,5 @@ module.exports = {
 		}
 
 		return newData;
-	},
-
-	/**
-	 * Generates `test_tags` variable containing given tags object.
-	 *
-	 * @param {Object} tags Tags which will be assigned to `test_tags` variable.
-	 * @returns {String} JavaScript code assigning tags object to `test_tags` variable.
-	 */
-	generate( tags ) {
-		return tags ? `\nvar test_tags = ${ JSON.stringify( tags ) };\n` : '';
 	}
 };

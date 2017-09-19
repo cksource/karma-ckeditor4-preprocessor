@@ -8,6 +8,7 @@
 const fs = require( 'fs' );
 const path = require( 'path' );
 const meta = require( './src/meta' );
+const tests = require( './src/tests' );
 
 /**
  * Returns relative path starting from a given folder based on absolute file path:
@@ -100,19 +101,26 @@ function getFixtureFileInfo( filePath ) {
 function createCKEditor4Preprocessor() {
 
 	return ( content, file, done ) => {
-		const tags = meta.parse( content ),
-			htmlFixture = getFixtureFileInfo( file.path );
 
-		tags.test = {
-			name: getTestName( file.path ),
-			file: getTestFileInfo( file.path )
-		};
+		if ( tests.isTestFile( getTestFileInfo( file.path ).path ) ) {
 
-		if ( htmlFixture ) {
-			tags.test.fixture = htmlFixture;
+			const tags = meta.parse( content ),
+				htmlFixture = getFixtureFileInfo( file.path );
+
+			tags.test = {
+				name: getTestName( file.path ),
+				file: getTestFileInfo( file.path )
+			};
+
+			if ( htmlFixture ) {
+				tags.test.fixture = htmlFixture;
+			}
+
+			done( tests.wrap( meta.remove( content ), tags ) );
+
+		} else {
+			done( content );
 		}
-
-		done( meta.generate( tags ) + meta.remove( content ) );
 	};
 }
 

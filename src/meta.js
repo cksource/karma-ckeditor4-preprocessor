@@ -6,7 +6,7 @@
 'use strict';
 
 const metaPattern = /(?:\/\*\s*|\@)(bender-(\w+(?:\-\w+)*)\:([^\*\n$]+))/gi;
-const globalPattern = /\/\*\s*global\s*(.*)*?\*\//gi;
+const globalPattern = /\/\*\s*global\s*([^*\/]*)\*\//gi;
 
 module.exports = {
 

@@ -94,7 +94,7 @@ function getFixtureFileInfo( filePath ) {
 
 /**
  * Creates preprocessor which converts bender tags (e.g. `/* bender-tags: editor *\/`) into JavaScript object which then
- * can be accessed by running tests. It also contains test name, test and fixture file paths.
+ * can be accessed by tests. It also contains test name, test and fixture file paths.
  *
  * @returns {Function} Preprocessor function.
  */
@@ -102,7 +102,11 @@ function createCKEditor4Preprocessor() {
 
 	return ( content, file, done ) => {
 
-		if ( tests.isTestFile( getTestFileInfo( file.path ).path ) ) {
+		const testFileInfo = getTestFileInfo( file.path );
+
+		content = tests.replaceTags( content, testFileInfo );
+
+		if ( tests.isTestFile( testFileInfo.path ) ) {
 
 			const tags = meta.parse( content ),
 				htmlFixture = getFixtureFileInfo( file.path );

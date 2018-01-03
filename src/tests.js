@@ -41,5 +41,26 @@ module.exports = {
 	wrap( content, tags ) {
 		const tests = `function() { ${ content } }`;
 		return `\nbender.testSuite( {\n\ttags: ${ JSON.stringify( tags || {} ) },\n\ttests: ${ tests } } );\n`;
+	},
+
+	/**
+	 * Replaces %NAME% tags inside test files.
+	 * @param {String} content File content.
+	 * @param {Object} testFileInfo File info object.
+	 * @returns {String} File content with replaced tags.
+	 */
+	replaceTags( content, testFileInfo ) {
+		const tags = {
+			'BASE_PATH': '/base/tests/',
+			'TEST_DIR': `/base/${ testFileInfo.path.split( '/' ).slice( 0, -1 ).join( '/' ) }/`,
+			'APPS_DIR': '', // Not used in any bender tests.
+			'TEST_ID': '' // Not used in any bender tests.
+		};
+
+		for ( let tag in tags ) {
+			content = content.replace( new RegExp( `%${ tag }%`, 'g' ), tags[ tag ] );
+		}
+
+		return content;
 	}
 };

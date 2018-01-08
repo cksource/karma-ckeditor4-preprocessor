@@ -56,7 +56,12 @@ module.exports = {
 			}
 
 			// If there was a previous value, add the new one after a coma.
-			parent[ current ] = parent[ current ] ? `${ parent[ current ] }, ${ value }` : value;
+			parent[ current ] = parent[ current ] ? `${ parent[ current ] },${ value }` : value;
+		}
+
+		// Remove spaces from plugins tag.
+		if ( result.ckeditor && result.ckeditor.plugins ) {
+			result.ckeditor.plugins = result.ckeditor.plugins.replace( /\s+/g, '' );
 		}
 
 		// Parse 'global' tag.
